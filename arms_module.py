@@ -55,7 +55,6 @@ class Rover:
                 print("Moving left")
 
             elif(cvcondition > 2):#right of center frame
-                self.__tracks.turnright()
                 print("Moving Right")
 
             cvcondition = Tracking.track(colorSelection[0], colorSelection[1])
@@ -69,7 +68,6 @@ class Rover:
         oldValue = 200; # Added this to not need an IR Sensor.
 
         while not done:
-            self.__tracks.forward()
             print("moving forward")
             self.center(color)
             value = 200; # Added this value to not need an IR Sensor.
