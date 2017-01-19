@@ -1,14 +1,4 @@
-import time
-import os
-import numpy as np
-import cv2
-import argparse
-import imutils
-from collections import deque
-import sys
 from arms_module import *
-import Tracking
-
 
 demo = Rover()
 
