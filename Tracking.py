@@ -9,54 +9,29 @@ import imutils
 import cv2
 import time
 
-# 600 by 450 window size
-
-
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("-v", "--video",
-                help="path to the (optional) video file")
 ap.add_argument("-b", "--buffer", type=int, default=64,
                 help="max buffer size")
 args = vars(ap.parse_args())
 
-# define the lower and upper boundaries of the "green"
-# ball in the HSV color space, then initialize the
-# list of tracked points
+# Initialize the list of tracked points
 pts = deque(maxlen=args["buffer"])
 
-# if a video path was not supplied, grab the reference
-# to the webcam
-#if not args.get("video", False):
- #   camera = cv2.VideoCapture(1)
-
-# otherwise, grab a reference to the video file
-#else:
-#    camera = cv2.VideoCapture(args["video"])
+# Grab a reference to the video file
 camera = cv2.VideoCapture(0)
 
 def track(lowerboundary, upperboundary):
 
-    cvcondition = None
 
-    #This variable will be used to tell if either:
+    #Used to tell if object is either:
     #Any object is in the frame,
     #if the object is too far left from the center
     #if the object is too far right from the center
-
+    cvcondition = None
 
     # grab the current frane
     (grabbed, frame) = camera.read()
-
-    # if we are viewing a video and we did not grab a frame,
-    # then we have reached the end of the video
-    if args.get("video") and not grabbed:
-        return 0
-
-    #if we are viewing a video and we did not grab a frame,
-    # then we have reached the end of the video
-    if args.get("video") and not grabbed:
-        return 0
 
     # resize the frame, blur it, and convert it to the HSV
     # color space
@@ -132,27 +107,5 @@ def track(lowerboundary, upperboundary):
     # show the frame to our screen
     cv2.imshow("Frame", frame)
     key = cv2.waitKey(1) & 0xFF
-
-    '''
-    #if the 'q' key is pressed, stop the loop
-    if key == ord("q"):
-        break
-    '''
-    """"
-    waitstate = None
-    while key == ord("q"):
-        waitstate = 0
-        print 'waiting'
-        while waitstate == 0
-            time.sleep(1)
-            status = raw_input("Are we still waiting?")
-            waitstate = status
-            if waitstate != 0
-                break
-            else:
-                continue
-        print 'resuming'
-        break
-    """""
 
     return cvcondition
